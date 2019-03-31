@@ -77,7 +77,7 @@ var start=function() {
               if(wordObject.getScreenWord()[i].used==true) {
                 check=check+1;
               } else {
-                  check=check*0;
+                check=check*0;
               }
           }
           gameCount--;
