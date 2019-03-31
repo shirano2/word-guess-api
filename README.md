@@ -1,4 +1,4 @@
-# word-guess-api
+# word-guess-app
 
 This game is simple. 
 
@@ -11,4 +11,4 @@ This is made by **Minseok Choi (https://github.com/shirano2)**.
 
 ### The GIF of How to Use it
 
-![gif](https://shirano2.github.io/word-guess-api/images/word.gif)
+![gif](https://shirano2.github.io/word-guess-app/images/word.gif)
