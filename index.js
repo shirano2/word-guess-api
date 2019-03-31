@@ -29,6 +29,30 @@ var word=["adult", "aircraft", "alphabet",
         "window", "weapon", "widow",
         "xylophone","yacht","zombie"];
 
+var init=function(){
+    gameCount=12;
+    wordObject= new wordModule();
+}
+
+var random = function() { 
+    var computerIndex=Math.floor(Math.random()*word.length);
+    var computerChoose=word[computerIndex];
+    wordObject.setSelectWord(computerChoose);
+    console.log("\r\n"+"   "+wordObject.getScreenWord().join(" "));
+}
+
+var init=function(){
+    gameCount=12;
+    wordObject= new wordModule();
+}
+
+var random = function() { 
+    var computerIndex=Math.floor(Math.random()*word.length);
+    var computerChoose=word[computerIndex];
+    wordObject.setSelectWord(computerChoose);
+    console.log("\r\n"+"   "+wordObject.getScreenWord().join(" "));
+}
+
 var start=function() {
     inquirer.prompt([
         {
@@ -37,7 +61,7 @@ var start=function() {
           validate: function(value) {
             if (value.length==1 && "abcdefghijklmnopqrstuvwxyz".split("").indexOf(value)>=0) {
                 check=wordObject.pressCharacter(value);
-                if(check.indexOf("false")>=0) {
+                if(check=="false") {
                     console.log("\r\nYou already pressed it!!");
                     return false;
                 } else {
@@ -52,7 +76,7 @@ var start=function() {
             }
           }
         }
-      ]).then(function(answers) {
+      ]).then(function() {
           console.log("   "+wordObject.getScreenWord().join(" "));
           if(check.indexOf("incorrect")>=0) {
               console.log("\r\nYou're wrong!!");
@@ -61,41 +85,25 @@ var start=function() {
           }
           check=0;
           for(var i=0; i<wordObject.getScreenWord().length;i++) {
-              if(wordObject.getScreenWord()[i].used.indexOf("true")>=0) {
+              if(wordObject.getScreenWord()[i].used==true) {
                 check=check+1;
               } else {
                   check=check*0;
               }
           }
+          gameCount--;
           if(check==wordObject.getScreenWord().length) {
               console.log("\r\nYou Win!!");
               restartGame();
-          }
-          gameCount--;
-          
-          if(gameCount==0) {
+          } else if(gameCount==0) {
               console.log("\r\nGAME OVER!!");
               console.log("\r\nThe Answer is "+wordObject.getSelectWord()+"!!!");
               restartGame();
-          }
-
-          if(check!=wordObject.getScreenWord().length && gameCount!=0) {
+          } else {
               console.log("\r\nYou left "+gameCount+" chances");
               start();
           }
     });
-}
-
-var init=function(){
-    gameCount=12;
-    wordObject= new wordModule();
-}
-
-var random = function() { 
-    var computerIndex=Math.floor(Math.random()*word.length);
-    var computerChoose=word[computerIndex];
-    wordObject.setSelectWord(computerChoose);
-    console.log("\r\n"+"   "+wordObject.getScreenWord().join(" "));
 }
 
 var gameStart=function() {

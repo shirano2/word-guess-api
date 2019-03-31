@@ -24,15 +24,15 @@ var word=function(){
             return "false";
         }
         this.pressedKeyboard.push(character);
-        var correct="false";
+        var correct=false;
         for(var i=0;i<this.screenWord.length;i++) {
             if(this.screenWord[i].character.indexOf(character)>=0) {
                 var lett=this.screenWord[i];
-                var check=lett.setUsed(character);
-                correct="true";
+                lett.setUsed(character);
+                correct=true;
             }
         }
-        if(correct.indexOf("true")>=0) {
+        if(correct==true) {
             return "correct";
         } else {
             return "incorrect";
