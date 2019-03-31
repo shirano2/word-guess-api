@@ -18,6 +18,7 @@
   },
   "homepage": "https://github.com/shirano2/word-guess-api#readme",
   "dependencies": {
+    "chalk": "^2.4.2",
     "inquirer": "^6.2.2"
   }
 }

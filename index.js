@@ -1,5 +1,6 @@
 var inquirer = require("inquirer");
 var wordModule = require("./Word.js");
+var chalk = require("chalk");
 var wordObject;
 var gameCount;
 var check;
@@ -50,7 +51,7 @@ var random = function() {
     var computerIndex=Math.floor(Math.random()*word.length);
     var computerChoose=word[computerIndex];
     wordObject.setSelectWord(computerChoose);
-    console.log("\r\n"+"   "+wordObject.getScreenWord().join(" "));
+    console.log(chalk.yellow("\r\n"+"   "+wordObject.getScreenWord().join(" ")));
 }
 
 var start=function() {
@@ -62,26 +63,26 @@ var start=function() {
             if (value.length==1 && "abcdefghijklmnopqrstuvwxyz".split("").indexOf(value)>=0) {
                 check=wordObject.pressCharacter(value);
                 if(check=="false") {
-                    console.log("\r\nYou already pressed it!!");
+                    console.log(chalk.red("\r\nYou already pressed it!!"));
                     return false;
                 } else {
                     return true;
                 }  
             } else if(value.length!=1) {
-                console.log("\r\nYou should input 1 character!!");
+                console.log(chalk.red("\r\nYou should input 1 character!!"));
                 return false;
             } else {
-                console.log("\r\nYou should input alphabet('a-z')!!");
+                console.log(chalk.red("\r\nYou should input alphabet('a-z')!!"));
                 return false;
             }
           }
         }
       ]).then(function() {
-          console.log("   "+wordObject.getScreenWord().join(" "));
+          console.log(chalk.yellow("   "+wordObject.getScreenWord().join(" ")));
           if(check.indexOf("incorrect")>=0) {
-              console.log("\r\nYou're wrong!!");
+              console.log(chalk.red("\r\nYou're wrong!!"));
           } else {
-              console.log("\r\nYou're correct!!");
+              console.log(chalk.blue("\r\nYou're correct!!"));
           }
           check=0;
           for(var i=0; i<wordObject.getScreenWord().length;i++) {
@@ -93,11 +94,11 @@ var start=function() {
           }
           gameCount--;
           if(check==wordObject.getScreenWord().length) {
-              console.log("\r\nYou Win!!");
+              console.log(chalk.magenta.bold("\r\nYou Win!!"));
               restartGame();
           } else if(gameCount==0) {
-              console.log("\r\nGAME OVER!!");
-              console.log("\r\nThe Answer is "+wordObject.getSelectWord()+"!!!");
+              console.log(chalk.red.bold("\r\nGAME OVER!!"));
+              console.log("\r\nThe Answer is "+chalk.yellow(wordObject.getSelectWord())+"!!!");
               restartGame();
           } else {
               console.log("\r\nYou left "+gameCount+" chances");
