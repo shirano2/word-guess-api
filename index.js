@@ -42,18 +42,6 @@ var random = function() {
     console.log("\r\n"+"   "+wordObject.getScreenWord().join(" "));
 }
 
-var init=function(){
-    gameCount=12;
-    wordObject= new wordModule();
-}
-
-var random = function() { 
-    var computerIndex=Math.floor(Math.random()*word.length);
-    var computerChoose=word[computerIndex];
-    wordObject.setSelectWord(computerChoose);
-    console.log(chalk.yellow("\r\n"+"   "+wordObject.getScreenWord().join(" ")));
-}
-
 var start=function() {
     inquirer.prompt([
         {
